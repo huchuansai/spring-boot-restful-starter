@@ -9,7 +9,7 @@
 
 - 基于 Spring Boot 2.4.2、Mybatis-Plus、符合Restful风格规范的轻量级 **后台脚手架项目**
 - 基于knife4j生成接口文档，页面美观，方便操作
-- 提供数据库迁移神奇：Flyway的使用实践
+- 提供数据库迁移工具：Flyway的使用实践
 - 提供跟项目配套的代码生成工具，Author is songlianquan
 - 提供 lambda 、stream api 的生产实践
 ### 项目初衷
