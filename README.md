@@ -3,7 +3,7 @@
 <p>此项目是基于SpringBoot、Mybatis-Plus、Redis的轻量级Restful项目，附代码生成器，开箱即用，持续更新中，如果觉得好用请给个Star⭐️</p>
 传送门：
 
-* 地址: [工具分享 陆续完善中](https://github.com/huchuansai/spring-boot-restful-starter)
+* 地址: [项目 陆续完善中](https://github.com/huchuansai/spring-boot-restful-starter)
 
 ## 系统说明
 
