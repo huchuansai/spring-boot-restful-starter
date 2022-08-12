@@ -12,7 +12,8 @@
 - 提供数据库迁移神奇：Flyway的使用实践
 - 提供跟项目配套的代码生成工具，Author is songlianquan
 - 提供 lambda 、stream api 的生产实践
-
+### 项目初衷
+* 提供最简的轻量化脚手架，而不去做最全最重的脚手架
 ### 模块说明
 
 ```lua

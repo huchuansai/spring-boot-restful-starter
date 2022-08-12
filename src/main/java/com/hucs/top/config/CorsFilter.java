@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
- * @description: 配置跨域
+ * @description: 配置跨域(跨域对应的Http方面的知识还是挺多的，后续我会专门出一篇文章聊聊我所知道的跨域)
  * @author: huchuansai
  * @time: 2021/6/7 7:29 下午
  */
