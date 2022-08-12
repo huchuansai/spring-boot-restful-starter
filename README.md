@@ -5,15 +5,17 @@
 
 * 地址: [项目 陆续完善中](https://github.com/huchuansai/spring-boot-restful-starter)
 
+### 项目初衷
+* 提供最简的轻量化脚手架，而不去做最全最重的脚手架
 ## 系统说明
 
 - 基于 Spring Boot 2.4.2、Mybatis-Plus、符合Restful风格规范的轻量级 **后台脚手架项目**
+- 统一响应结果封装及生成工具、统一异常处理
 - 基于knife4j生成接口文档，页面美观，方便操作
 - 提供数据库迁移工具：Flyway的使用实践
-- 提供跟项目配套的代码生成工具，Author is songlianquan
+- 提供跟项目配套的代码生成工具，直接生成Controller、Manager、Service、Dao、Vo、Param
 - 提供 lambda 、stream api 的生产实践
-### 项目初衷
-* 提供最简的轻量化脚手架，而不去做最全最重的脚手架
+2022年8月12日
 ### 模块说明
 
 ```lua
@@ -62,15 +64,16 @@ spring-boot-restful-starter
         <knife4j.version>2.0.9</knife4j.version>
         <pagehelper.version>1.2.5</pagehelper.version>
 ```
+
+### 快速开始
+* 先修改application-dev.yml中的Redis、Mysql配置
+* 直接启动BootStartApplication，问：http://localhost:6004/api/doc.html#/home 后就可以看到接口文档了
+* Have Fun！
 #### 推荐给大家一个好用的数据库迁移工具：Flyway
 * 比如说你的user表里要加一个字段，那么你在测试、生产上都需要去修改数据库，而且有时候程序员是无法登录生产环境的数据库的，这个时候怎么办？又或者你们的项目是支持独立部署的，你有100个客户需要去部署系统，这个时候怎么办？假如说你就一个生产系统，但是你忘记做数据库的字段变化了，这个时候又该怎么办呢？所以这个时候就轮到FlyWay出场了
 * [官网地址](https://flywaydb.org/documentation/)，FlyWay会在你的应用程序初始化时检测你的数据库迁移脚本，然后依次帮你执行，这样就减少了人工出错的机会了。
 * FlyWay也在本项目中有使用，具体的使用方法请clone本项目后仔细阅读
 ##### 其中接口文档采用的是knife4j，样式和易用性上都比Swagger要好，也支持OpenApi3.0
-
-### 项目使用说明、启动流程
-* 先修改application-dev.yml中的Redis、Mysql配置
-* 直接启动BootStartApplication，问：http://localhost:6004/api/doc.html#/home 后就可以看到接口文档了
 
 ### 代码生成工具使用 ⭐️⭐️
 * GenerateCodeUtil类提供一键生成代码的入口，无需配置，直接生成Controller、Manager、Service、Dao、Vo、Param！
