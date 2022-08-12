@@ -19,14 +19,14 @@ import java.util.*;
 
 public class GenerateCodeUtil {
     // 要生成的数据库表，可以传入多个
-    private static final List<String> tableNameList = Arrays.asList("house");
+    private static final List<String> tableNameList = Collections.singletonList("house");
     // 作者
     private static final String AUTHOR_NAME = PrefixKeyConstant.AUTHOR;
     // 数据库连接地址：
-    private static final String DATA_BASE_URL = "jdbc:mysql://114.116.219.138:3306/livecloud?useUnicode=true&useSSL=false&characterEncoding=utf8&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=Asia/Shanghai&rewriteBatchedStatements=true";
+    private static final String DATA_BASE_URL = "jdbc:mysql://127.0.0.1:3306/livecloud?useUnicode=true&useSSL=false&characterEncoding=utf8&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=Asia/Shanghai&rewriteBatchedStatements=true";
     // 数据库账号及密码
-    private static final String DATA_BASE_USERNAME = "livecloud";
-    private static final String DATA_BASE_PASSWORD = "admin123";
+    private static final String DATA_BASE_USERNAME = "your_user_name";
+    private static final String DATA_BASE_PASSWORD = "your_pass_word";
     // 数据库驱动
     private static final String DRIVER_CLASS_NAME = "com.mysql.cj.jdbc.Driver";
 

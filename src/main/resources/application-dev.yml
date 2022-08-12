@@ -1,16 +1,16 @@
 spring:
   datasource:
-    url: jdbc:mysql://114.116.219.138:3306/livecloud?useUnicode=true&useSSL=false&characterEncoding=utf8&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=Asia/Shanghai&rewriteBatchedStatements=true
-    username: livecloud
-    password: admin123
+    url: jdbc:mysql://127.0.0.1:3306/livecloud?useUnicode=true&useSSL=false&characterEncoding=utf8&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=Asia/Shanghai&rewriteBatchedStatements=true
+    username: your_user_name
+    password: your_pass_word
   redis:
     # Redis数据库索引（默认为0）
     # Redis服务器地址
-    host: 114.116.219.138
+    host: 127.0.0.1
     # Redis服务器连接端口
     port: 6379
-    # Redis服务器连接密码（默认为空）
-    password: China099
+    # Redis服务器连接密码
+    password: your_pass_word
   flyway:
     out-of-order: true
 
