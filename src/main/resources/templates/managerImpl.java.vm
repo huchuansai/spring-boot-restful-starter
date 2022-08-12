@@ -1,0 +1,70 @@
+package ${cfg.managerImpl};
+
+import ${package.Entity}.${entity};
+import ${package.Service}.${table.serviceName};
+import org.springframework.stereotype.Service;
+import lombok.extern.slf4j.Slf4j;
+import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.BeanUtils;
+
+import ${cfg.manager}.${entity}Manager;
+import ${cfg.paramPath}.${entity}AddParam;
+import ${cfg.paramPath}.${entity}UpdateParam;
+import ${cfg.voPath}.${entity}Vo;
+#if(${cfg.managerClazz})
+#foreach($mag in ${cfg.managerClazz})
+import ${mag};
+#end
+#end
+
+/**
+ * @Description:
+ * @Author: ${author}
+ * @Date: $!{cfg.date}
+ */
+
+@Slf4j
+@Service
+@RequiredArgsConstructor(onConstructor = @__(@Autowired))
+#if(${kotlin})
+open class ${table.serviceImplName} : ${superServiceImplClass}<${table.mapperName}, ${entity}>(), ${table.serviceName} {
+
+        }
+#else
+public class ${entity}ManagerImpl implements ${entity}Manager {
+
+    private final ${table.serviceName} ${table.entityPath}Service;
+
+    @Override
+    public #if(${idType}=='AUTO' ||${idType}=='NONE')Long#elseif(${idType}=='INPUT')String#else String#end insert${entity}(${entity}AddParam param, User user) {
+        ${entity} ${table.entityPath} = new ${entity}();
+        BeanUtils.copyProperties(param, ${table.entityPath});
+        return ${table.entityPath}Service.saveEntity(${table.entityPath});
+    }
+
+    @Override
+    public Boolean update${entity}(#if(${idType}=='AUTO' ||${idType}=='NONE')Long#elseif(${idType}=='INPUT')String#else String#end id, ${entity}UpdateParam param, User user) {
+        ${entity} ${table.entityPath} = new ${entity}();
+        ${table.entityPath}.setId(id);
+        BeanUtils.copyProperties(param, ${table.entityPath});
+        ${table.entityPath}Service.updateById(${table.entityPath});
+        return true;
+    }
+
+    @Override
+    public Boolean remove${entity}(#if(${idType}=='AUTO' ||${idType}=='NONE')Long#elseif(${idType}=='INPUT')String#else String#end id, User user) {
+        ${table.entityPath}Service.removeById(id);
+        return true;
+    }
+
+    @Override
+    public ${entity}Vo ${table.entityPath}Info(#if(${idType}=='AUTO' ||${idType}=='NONE')Long#elseif(${idType}=='INPUT')String#else String#end id, User user) {
+        ${entity}Vo vo = new ${entity}Vo();
+        ${entity} ${table.entityPath} = ${table.entityPath}Service.getById(id);
+        BeanUtils.copyProperties(${table.entityPath}, vo);
+        return vo;
+    }
+
+}
+#end

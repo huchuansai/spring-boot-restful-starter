@@ -1,0 +1,25 @@
+package ${package.Service};
+
+import ${package.Entity}.${entity};
+import ${superServiceClassPackage};
+
+/**
+ * @Description:
+ * @Author: ${author}
+ * @Date: $!{cfg.date}
+ */
+
+#if(${kotlin})
+interface ${table.serviceName} : ${superServiceClass}<${entity}>
+#else
+public interface ${table.serviceName} extends ${superServiceClass}<${entity}> {
+
+    /**
+     * @Description: 新增$!{table.comment}
+     * @Author: ${author}
+     * @Date: $!{cfg.date}
+     **/
+#if(${idType}=='AUTO' ||${idType}=='NONE')    Long#elseif(${idType}=='INPUT')    String#else    String#end saveEntity(${entity} ${table.entityPath});
+
+}
+#end

@@ -1,0 +1,129 @@
+server:
+  port: 6004 #端口
+  servlet:
+    context-path: /api #统一的上下文请求路径
+  compression:
+    enabled: true #开启压缩
+    mime-types: application/json,text/html
+  undertow:
+    threads:
+      io: 8
+      worker: 256
+    buffer-size: 512
+    direct-buffers: true
+    max-http-post-size: -1 #HTTP POST请求最大的大小 默认-1，不限制大小
+
+logging:
+  config: classpath:logback-spring.xml #指定日志文件的位置
+
+spring:
+  # 本地存储，则mvc和resources都要加上
+  mvc:
+    static-path-pattern: /storage/**
+  profiles:
+    active: dev # 指定配置文件
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    type: com.alibaba.druid.pool.DruidDataSource
+    druid:
+      initialSize: 5
+      minIdle: 5
+      maxActive: 20
+      maxWait: 60000
+      timeBetweenEvictionRunsMillis: 60000
+      minEvictableIdleTimeMillis: 300000
+      validationQuery: select 'x'
+      testWhileIdle: true
+      testOnBorrow: false
+      testOnReturn: false
+      poolPreparedStatements: true
+      maxPoolPreparedStatementPerConnectionSize: 20
+      filters: stat
+      connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=1500
+      useGlobalDataSourceStat: true
+      stat-view-servlet:
+        login-username: huchuansai
+        login-password: huchuansai
+  redis:
+    # 连接超时时间
+    timeout: 10s
+    database: 11
+    jedis: # 采用jedis做客户端
+      pool:
+        # 连接池最大连接数
+        max-active: 50
+        # 连接池最大阻塞等待时间（使用负值表示没有限制）
+        max-wait: -1ms
+        # 连接池中的最大空闲连接
+        max-idle: 10
+        # 连接池中的最小空闲连接
+        min-idle: 1
+  servlet:
+    multipart:
+      max-file-size: 50MB
+      max-request-size: 50MB
+  jackson:
+    time-zone: GMT+8
+    date-format: yyyy-MM-dd HH:mm:ss
+    default-property-inclusion: always
+  task:
+    scheduling:
+      pool:
+        size: 10 #定时任务线程池大小配置
+  flyway:
+    table: boot_flyway_schema_history
+    locations: classpath:/migration #迁移文件的具体位置
+    baseline-on-migrate: true
+    clean-disabled: true #一定要设置为true，禁止发生错误后清空整个数据库的表数据
+    # 设置为false之后，对之前的migration文件做修改不会去做校验
+    validate-on-migrate: false
+    out-of-order: false
+  web:
+    resources:
+      static-locations: file:./storage/
+
+mybatis-plus:
+  mapper-locations: classpath*:mybatis/*.xml
+  configuration:
+    mapUnderscoreToCamelCase: true #驼峰映射
+  global-config:
+    db-config:
+      logic-delete-field: deleted # 全局逻辑删除的实体字段名
+      logic-delete-value: 1 # 逻辑已删除值(默认为 1)
+      logic-not-delete-value: 0 # 逻辑未删除值(默认为 0)
+    banner: false # 关闭mp banner打印
+knife4j:
+  enable: true
+  documents:
+    -
+      group: 2.X版本
+      name: 接口签名
+      locations: classpath:sign/*
+  setting:
+    language: zh-CN
+    enableSwaggerModels: true
+    enableDocumentManage: true
+    swaggerModelName: 实体类列表
+    enableVersion: false
+    enableReloadCacheParameter: false
+    enableAfterScript: true
+    enableFilterMultipartApiMethodType: POST
+    enableFilterMultipartApis: false
+    enableRequestCache: true
+    enableHost: false
+    enableHostText: 192.168.0.193:8000
+    enableHomeCustom: true
+    enableSearch: false
+    enableFooter: false
+    enableFooterCustom: true
+    footerCustomContent: Apache License 2.0 | Copyright  2019-[浙江八一菜刀股份有限公司](https://gitee.com/xiaoym/knife4j)
+    enableDynamicParameter: false
+    enableDebug: true
+    enableOpenApi: false
+    enableGroup: true
+  cors: false
+  production: false
+  basic:
+    enable: false
+    username: test
+    password: 12313
